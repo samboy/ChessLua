@@ -28,7 +28,7 @@ function FENtoGrid(fen)
   local number = 0
   local index = 1
   local square = 1
-  while index < fen:len()
+  while index < fen:len() do
     local look = fen:sub(index, index)
     index = index + 1
     if look:match('[0-9]') then
