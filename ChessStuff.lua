@@ -24,7 +24,7 @@ end
 
 -- Convert a FEN in to a grid
 function FENtoGrid(fen)
-  local out = emptyChessboard
+  local out = emptyChessboard()
   local number = 0
   local index = 1
   local square = 1
@@ -49,6 +49,23 @@ function FENtoGrid(fen)
   return out
 end
 
+-- Convert a FEN piece in to its Chess Merida character
+function pieceToMerida(piece, isBlackSquare)
+  local isBlack, isPiece, thisPiece
+  isPiece = piece:match('[a-zA-Z]')
+  isBlack = piece:match('[a-z]')
+  if not isPiece then
+    if isBlackSquare then return "+" else return " " end
+  end
+  thisPiece = piece:lower()
+  if isBlack then
+    local blackMap = {q="w",r="t",p="o",k="l",b="v",n="m"}
+    thisPiece = blackMap[thisPiece]
+  end
+  if isBlackSquare then thisPiece = thisPiece:upper() end
+  return thisPiece
+end
+
 -- The color of a given square on a chessboard
 -- Index is a number from 1 (a8) to 64 (h1)
 -- Output is true if square is black, false otherwise
@@ -59,4 +76,26 @@ function squareIsBlack(index)
   else
     if(index % 2) == 0 then return true else return false end
   end
+end
+
+-- Convert a Grid in to a chessboard rendered by Chess Merida font
+function gridToMerida(grid, newline)
+  if not newline then newline = "\n" end
+  local out = '!""""""""#' .. newline
+  local index = 1
+  for row = 1,8 do
+    out = out .. "$"
+    for file = 1,8 do
+      out = out .. pieceToMerida(grid[index],squareIsBlack(index))
+      index = index + 1
+    end
+    out = out .. "%" .. newline
+  end
+  out = out .. "/(((((((()" .. newline
+  return out
+end
+
+function FENtoMerida(fen)
+  local grid = FENtoGrid(fen)
+  return gridToMerida(grid)
 end
