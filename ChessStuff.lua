@@ -53,8 +53,8 @@ end
 -- Index is a number from 1 (a8) to 64 (h1)
 -- Output is true if square is black, false otherwise
 function squareIsBlack(index)
-  local phase = (index / 8) % 2
-  if phase == 0 then
+  local phase = math.floor((index - 1) / 8) % 2
+  if phase == 1 then
     if(index % 2) == 1 then return true else return false end
   else
     if(index % 2) == 0 then return true else return false end
