@@ -192,6 +192,11 @@ function chessSplit(s, splitOn)
   return out
 end
 
+if #arg == 2 then 
+  if(arg[1] == "Merida") then print(FENtoMerida(arg[2])) end
+  os.exit(0)
+end
+
 -- Given a single mate In 1 puzzle from https://database.lichess.org, 
 -- if the move in to the mate-in-1 isn’t unusual (promotion, en passant, or
 -- castling), output a Chess Merida font compatible version of the puzzle
