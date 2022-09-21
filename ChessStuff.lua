@@ -48,7 +48,7 @@ end
 -- Could this move be a pawn capture
 -- Input: String in form 'e2e4' or 'e7e8q'
 function pawnCaptureMove(alg)
-  local x, y = deltermineDelta(alg)
+  local x, y = determineDelta(alg)
   if x == 1 and y == 1 then return true end
   return false
 end
@@ -208,9 +208,11 @@ function lichessToMerida(line)
 end
 
 line = true
+out = ""
 while line do
   line = io.read()
   local merida
   if line then merida = lichessToMerida(line) end
-  if merida then print(merida) end
+  if merida then out = out .. merida end
 end
+print(out)
