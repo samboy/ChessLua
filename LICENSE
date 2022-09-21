@@ -44,3 +44,15 @@ WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
+# Note on MatingPuzzles.pdf
+
+The original Chess Merida font used to render the diagrams in this
+document is "freeware", with no exact stipulations for how it can be
+used (the author requested other chess diagram fonts, which are linked
+to in README.md).  The font is from over two decades ago, it has been
+redistributed on numerous web sites and copied, and a resonable person
+would infer that "freeware" means a PDF using this font can be distributed
+with no restrictions whatsoever.
+
+The other font in this file, Charis SIL (modified) is an OFL font
+which can be put in a PDF file without any issue.
