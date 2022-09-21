@@ -44,6 +44,49 @@ function determineDelta(alg)
   return deltaX, deltaY
 end
 
+-- Could this move be a pawn capture
+-- Input: String in form 'e2e4' or 'e7e8q'
+function pawnCaptureMove(alg)
+  local x, y = deltermineDelta(alg)
+  if x == 1 and y == 1 then return true end
+  return false
+end
+
+-- Could this move be a normal king move
+-- Input: String in form 'e2e4' or 'e7e8q'
+function normalKingMove(alg)
+  local x, y = deltermineDelta(alg)
+  if x <= 1 and y <= 1 then return true end
+  return false
+end
+
+-- Determine if a given move is an unusual move (promotion, en passent,
+-- castling)
+-- Input is a move like 'e2e4' and the state of the chessboard ('grid')
+-- before the move is made
+function nonStandardMove(alg, grid)
+  if alg:len() ~= 4 then return true end -- Promotion
+  local from, to = algToGrid2(alg)
+  if grid[from]:lower() == 'p' and pawnCaptureMove(alg) and 
+     grid[to]:lower() == '' then return true end -- En passant
+  if grid[from]:lower() == 'k' and not normalKingMove(alg) then 
+    return true -- Castling
+  end
+  return false
+end
+
+-- If we have a standard move (no promotion, en passant, or castling), 
+-- update the grid (chessboard) with the move made
+-- Input: Move like 'e2e4', grid (chessboard) with current state
+-- Note: Grid will be altered by this function!
+function movePiece(alg, grid)
+  if nonStandardMove(alg, grid) then return false end -- Not implemented
+  local from, to = algToGrid2(alg)
+  grid[to] = grid[from]
+  grid[from] = ""
+  return true
+end
+
 -- New empty chessboard
 function emptyChessboard()
   local out = {}
