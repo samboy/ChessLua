@@ -28,8 +28,9 @@ end
 function algToXY(alg)
   local fileS = {a=1,b=2,c=3,d=4,e=5,f=6,g=7,h=8}
   local file = alg:sub(1,1)
+  file = fileS[file] -- Make number
   local rank = tonumber(alg:sub(2,2))
-  return file, rank
+  return tonumber(file), tonumber(rank)
 end
 
 -- Determine the x,y delta in a piece move
@@ -55,7 +56,7 @@ end
 -- Could this move be a normal king move
 -- Input: String in form 'e2e4' or 'e7e8q'
 function normalKingMove(alg)
-  local x, y = deltermineDelta(alg)
+  local x, y = determineDelta(alg)
   if x <= 1 and y <= 1 then return true end
   return false
 end
@@ -209,6 +210,7 @@ end
 line = true
 while line do
   line = io.read()
-  local merida = lichessToMerida(line)
+  local merida
+  if line then merida = lichessToMerida(line) end
   if merida then print(merida) end
 end
