@@ -20,6 +20,9 @@ bunch of pretty mate in one chess puzzle diagrams.
 
 # The mateInOne.csv file
 
+The `mateInOne.csv` file shows mating positions, all from actual games
+of chess played (no composed puzzles).
+
 While the FEN fields in `mateInOne.csv` all show Black having the move,
 in Lichess’s database of chess puzzles, the position right before the
 puzzle is shown in the FEN, then the first move is made.  All of
