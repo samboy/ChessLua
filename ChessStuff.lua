@@ -16,11 +16,24 @@ function algToGrid(alg)
 end
 
 -- Convert an algrbraic square in to an x,y coordinate
+-- Input: String in form 'e4'
 function algToXY(alg)
   local fileS = {a=1,b=2,c=3,d=4,e=5,f=6,g=7,h=8}
   local file = alg:sub(1,1)
   local rank = tonumber(alg:sub(2,2))
   return file, rank
+end
+
+-- Determine the x,y delta in a piece move
+-- Input: String in form 'e2e4' or 'e7e8q'
+function determineDelta(alg)
+  local from = alg:sub(1,2)
+  local to = alg:sub(3,4)
+  local fromX, fromY = algToXY(from)
+  local toX, toY = algToXY(to)
+  local deltaX = math.abs(fromX - toX)
+  local deltaY = math.abs(fromY - toY)
+  return deltaX, deltaY
 end
 
 -- New empty chessboard
