@@ -41,6 +41,18 @@ these puzzles have White move and deliver mate in one.  Fields:
 We have, in mateInOne.csv, 115,436 brilliant ways for White to mate in
 one move.
 
+To sort the positions by difficulty (easiest first) in Linux/*NIX:
+
+```
+<mateInOne.csv tr -d '\015' | awk -F, '{print $4 " " $0}' | sort -n > f.csv
+```
+
+Hardest first:
+
+```
+<mateInOne.csv tr -d '\015' | awk -F, '{print $4 " " $0}' | sort -nr > f.csv
+```
+
 # Chess Piece fonts
 
 See the following repos for fonts with chess pieces:
