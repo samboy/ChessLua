@@ -168,8 +168,22 @@ function gridToMerida(grid, newline)
   return out
 end
 
-function FENtoMerida(fen)
+-- Flip a grid upside down
+-- This code will alter grid
+function flipGrid(grid)
+  for a=1,32 do
+    temp = grid[65 - a]
+    grid[65 - a] = grid[a]
+    grid[a] = temp
+  end
+  return true
+end
+
+-- Convert a FEN of a position in to a Chess Merida text grid
+-- If flip is true, turn the board upside down to show it from Black’s side
+function FENtoMerida(fen, flip)
   local grid = FENtoGrid(fen)
+  if flip then flipGrid(grid) end
   return gridToMerida(grid)
 end
 
@@ -194,6 +208,7 @@ end
 
 if #arg == 2 then 
   if(arg[1] == "Merida") then print(FENtoMerida(arg[2])) end
+  if(arg[1] == "Flip") then print(FENtoMerida(arg[2],true)) end
   os.exit(0)
 end
 
