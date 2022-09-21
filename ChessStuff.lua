@@ -171,3 +171,44 @@ function FENtoMerida(fen)
   local grid = FENtoGrid(fen)
   return gridToMerida(grid)
 end
+
+-- Since Lunacy doesn't have split(), we make
+-- it ourselves
+function chessSplit(s, splitOn)
+  if not splitOn then splitOn = "," end
+  local place = true
+  local out = {}
+  local mark
+  local last = 1
+  while place do
+    place, mark = string.find(s, splitOn, last, false)
+    if place then
+      table.insert(out,string.sub(s, last, place - 1))
+      last = mark + 1
+    end
+  end
+  table.insert(out,string.sub(s, last, -1))
+  return out
+end
+
+-- Given a single mate In 1 puzzle from https://database.lichess.org, 
+-- if the move in to the mate-in-1 isn’t unusual (promotion, en passant, or
+-- castling), output a Chess Merida font compatible version of the puzzle
+-- for easier printing
+function lichessToMerida(line)
+  local fields = chessSplit(line)
+  local fen = fields[2]
+  local moves = fields[3]
+  local rating = tonumber(fields[4])
+  local grid = FENtoGrid(fen)
+  local moveList = chessSplit(moves,' ')
+  if movePiece(moveList[1],grid) then return gridToMerida(grid) end
+  return false
+end
+
+line = true
+while line do
+  line = io.read()
+  local merida = lichessToMerida(line)
+  if merida then print(merida) end
+end
