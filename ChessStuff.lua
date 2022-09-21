@@ -15,6 +15,14 @@ function algToGrid(alg)
   return 8*(8-rank) + fileS[file]
 end
 
+-- Convert a move to the grid points for both the source and destination
+-- Input is something like 'e2e4'
+function algToGrid2(alg)
+  local from = algToGrid(alg:sub(1,2))
+  local to = algToGrid(alg:sub(3,4))
+  return from, to
+end
+
 -- Convert an algrbraic square in to an x,y coordinate
 -- Input: String in form 'e4'
 function algToXY(alg)
