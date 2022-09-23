@@ -5,6 +5,16 @@
 -- Public domain -or- BSD0 by Sam Trenholme.  See LICENSE file.  If
 -- a LICENSE file is not provided, the files here are public domain.
 
+-- In addition to providing some ability to parse chess in Lua,
+-- this is also a standalone script which will take, as standard input
+-- lines from the puzzle database at https://database.lichess.org
+-- and will output chess diagrams using the mapping the Chess Merida
+-- font uses for chess diagrams.  To download Chess Merida, go to
+-- https://github.com/samboy/ChessMeridaFairy
+-- If a font with a more detailed license than "freeware" is desired:
+-- https://github.com/samboy/ChessGraphics
+-- https://github.com/samboy/OpenChessFontFairy
+
 -- Convert an algebraic square ('a1', etc.) in to a grid coordinate
 -- The grid has a8 be '1' and h1 be 64 so that FEN can be directly 
 -- translated in to the grid.  It is one-dimensional
