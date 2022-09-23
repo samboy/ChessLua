@@ -1,4 +1,13 @@
-Chess stuff implemented in pure Lua/Lunacy
+Free Chess ebooks and Chess code implemented in Lua/Lunacy
+
+# 9600MatingPuzzles.pdf
+
+This 800-page ebook has 9600 mate in one puzzles based on positions
+from human play over at [lichess.org](https://database.lichess.org).  In
+all positions, White can move and deliver mate in one.
+
+The ebook is public domain; it uses a slight variant of the freeware
+Chess Merida font as well as Charis SIL for the text on each page.
 
 # ChessStuff.lua
 
