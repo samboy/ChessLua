@@ -1,5 +1,14 @@
 #!/usr/bin/env lua
 
+-- This is a script for taking the raw puzzle database from lichess.org
+-- and rearranging the puzzles in a pseudo-random manner.  It takes the 
+-- first field (the game ID) and replaces it with the first 32 
+-- bits of the RadioGatún[32] sum of the PGN before the blunder move which
+-- allows mate in one.  To run this script, either use Lunacy or Lua with
+-- the Lua libs for rg32
+-- https://github.com/samboy/lunacy
+-- https://github.com/samboy/LUAlibs
+
 if not rg32 then require("rg32") end
 -- Since Lunacy doesn't have split(), we make
 -- it ourselves
